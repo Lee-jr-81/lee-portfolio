@@ -1,26 +1,99 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* =====================
+   Tailwind Theme Configuration (v4)
+   ===================== 
+   This replaces your tailwind.config.js. 
+   It maps your CSS variables to Tailwind utility classes.
+*/
+@theme {
+  /* Colors */
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: #7c3aed;
+  --color-secondary: #f59e0b;
+  --color-muted: #6b7280;
+  --color-success: #10b981;
+  --color-warning: #fbbf24;
+  --color-error: #ef4444;
+  --color-info: #3b82f6;
+
+  /* Map Tailwind's font-sans to your Next.js font variable */
+  --font-sans: var(--font-lexend), ui-sans-serif, system-ui;
+  --font-mono: var(--font-fira), monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* =====================
+   CSS Variables & Dark Mode
+   ===================== 
+*/
+:root {
+  --color-background: #ffffff;
+  --color-foreground: #171717;
+  --font-sans: "Lexend Deca", ui-sans-serif, system-ui;
+  --font-mono: "Fira Code", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --color-background: #0a0a0a;
+    --color-foreground: #ededed;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* =====================
+   Global Resets / Defaults
+   ===================== 
+*/
+@layer base {
+  body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Links */
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Smooth scroll */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* =========================================
+   UTILITIES (Tailwind v4 style)
+   ========================================= */
+
+@utility container-site {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+
+  @media (min-width: 1280px) {
+    max-width: 1280px;
+  }
+
+  @media (min-width: 1536px) {
+    max-width: 1600px;
+  }
+}
+
+@utility section-site {
+  padding-block: 4rem;
+
+  @media (min-width: 768px) {
+    padding-block: 5rem;
+  }
+
+  @media (min-width: 1280px) {
+    padding-block: 6rem;
+  }
 }
